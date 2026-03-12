@@ -1,80 +1,105 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Mapeando Elementos
+    // 1. Mapeando as Telas
     const boxLogin = document.getElementById('boxLogin');
-    const boxCadastro = document.getElementById('boxCadastro');
-    const linkIrParaCadastro = document.getElementById('linkIrParaCadastro');
-    const linkIrParaLogin = document.getElementById('linkIrParaLogin');
-    const formLogin = document.getElementById('formLogin');
-    const formCadastroData = document.getElementById('formCadastroData');
+    const boxCadastroVoluntario = document.getElementById('boxCadastroVoluntario');
+    const boxCadastroOng = document.getElementById('boxCadastroOng');
 
-    // 2. Lógica de Roteamento pela URL 
+    // 2. Mapeando os Formulários
+    const formLogin = document.getElementById('formLogin');
+    const formCadastroVoluntario = document.getElementById('formCadastroVoluntario');
+    const formCadastroOng = document.getElementById('formCadastroOng');
+
+    // === FUNÇÃO MESTRE DE NAVEGAÇÃO ===
+    // Esconde todas as caixas e mostra apenas a que foi pedida
+    function mostrarTela(telaParaMostrar) {
+        boxLogin.classList.add('oculto');
+        boxCadastroVoluntario.classList.add('oculto');
+        boxCadastroOng.classList.add('oculto');
+        
+        telaParaMostrar.classList.remove('oculto');
+    }
+
+    // 3. Lógica de Roteamento pela URL inicial
     const parametrosUrl = new URLSearchParams(window.location.search);
     const telaSolicitada = parametrosUrl.get('tela');
 
     if (telaSolicitada === 'cadastro') {
-        boxLogin.classList.add('oculto');
-        boxCadastro.classList.remove('oculto');
+        mostrarTela(boxCadastroVoluntario);
     } 
 
-    // 3. Alternar para Cadastro (Link azul dentro do formulário)
-    linkIrParaCadastro.addEventListener('click', (evento) => {
+    // 4. Navegação pelos Links (Click)
+    document.getElementById('linkIrParaCadastro').addEventListener('click', (e) => { e.preventDefault(); mostrarTela(boxCadastroVoluntario); });
+    document.getElementById('linkIrParaCadastro2').addEventListener('click', (e) => { e.preventDefault(); mostrarTela(boxCadastroVoluntario); });
+    
+    document.getElementById('linkIrParaCadastroOng').addEventListener('click', (e) => { e.preventDefault(); mostrarTela(boxCadastroOng); });
+    document.getElementById('linkIrParaCadastroOng2').addEventListener('click', (e) => { e.preventDefault(); mostrarTela(boxCadastroOng); });
+    
+    document.getElementById('linkIrParaLogin').addEventListener('click', (e) => { e.preventDefault(); mostrarTela(boxLogin); });
+    document.getElementById('linkIrParaLogin2').addEventListener('click', (e) => { e.preventDefault(); mostrarTela(boxLogin); });
+
+    // =========================================================
+    // 5. SALVANDO VOLUNTÁRIO
+    // =========================================================
+    formCadastroVoluntario.addEventListener('submit', (evento) => {
         evento.preventDefault();
-        boxLogin.classList.add('oculto');
-        boxCadastro.classList.remove('oculto');
-    });
-
-    // 4. Alternar para Login (Link azul dentro do formulário)
-    linkIrParaLogin.addEventListener('click', (evento) => {
-        evento.preventDefault();
-        boxCadastro.classList.add('oculto');
-        boxLogin.classList.remove('oculto');
-    });
-
-    // 5. Envio do Form de Login
-    formCadastroData.addEventListener('submit', (evento) =>{
-        evento.preventDefault();
-
-        const nome = document.getElementById('nomeCadastro').value;
-        const email = document.getElementById('emailCadastro').value;
-        const senha = document.getElementById('senhaCadastro').value;
-        const tipo = document.getElementById('tipoUsuario').value;
-
-        const novoUsuario = {
-            nome: nome,
-            email: email,
-            senha: senha,
-            tipo: tipo
+        
+        const usuario = {
+            nome: document.getElementById('nomeVoluntario').value,
+            cpf: document.getElementById('cpfVoluntario').value, // <-- AQUI ESTÁ O CPF
+            email: document.getElementById('emailVoluntario').value,
+            senha: document.getElementById('senhaVoluntario').value,
+            tipo: 'voluntario' 
         };
+        
+        localStorage.setItem('usuarioConecta', JSON.stringify(usuario));
+        alert(`Sucesso! Bem-vindo Voluntário(a) ${usuario.nome}.`);
+        mostrarTela(boxLogin); 
+    });
 
-        localStorage.setItem('usuarioConecta', JSON.stringify(novoUsuario));
-
-        alert(`Cadastro realizado com sucesso! Bem-Vindo(a), ${nome}`);
-
-        window.location.href = 'cadastro.html?tela=login';
-    })
-
-    // 6. Envio do Form de Cadastro
-    formLogin.addEventListener('submit', (evento) =>{
+    // =========================================================
+    // 6. SALVANDO ONG
+    // =========================================================
+    formCadastroOng.addEventListener('submit', (evento) => {
         evento.preventDefault();
+        const ong = {
+            nome: document.getElementById('nomeOng').value,
+            cnpj: document.getElementById('cnpjOng').value,
+            email: document.getElementById('emailOng').value,
+            senha: document.getElementById('senhaOng').value,
+            tipo: 'ong' // Fixado via código!
+        };
+        localStorage.setItem('usuarioConecta', JSON.stringify(ong));
+        alert(`Sucesso! Instituição ${ong.nome} cadastrada.`);
+        mostrarTela(boxLogin); 
+    });
 
+    // =========================================================
+    // 7. LÓGICA DE LOGIN (Inteligente)
+    // =========================================================
+    formLogin.addEventListener('submit', (evento) => {
+        evento.preventDefault();
         const emailDigitado = document.getElementById('emailLogin').value;
-        const senhaDigitado = document.getElementById('senhaLogin').value;
-
+        const senhaDigitada = document.getElementById('senhaLogin').value;
         const usuarioSalvoString = localStorage.getItem('usuarioConecta');
-
-        if(usuarioSalvoString){
+        
+        if (usuarioSalvoString) {
             const usuarioSalvo = JSON.parse(usuarioSalvoString);
             
-            if(usuarioSalvo.email === emailDigitado && usuarioSalvo.senha === senhaDigitado){
-                alert(`Login aprovado! Olá novamente, ${usuarioSalvo.nome}.`);
-
-                window.location.href = 'index.html';
-            } else{
-                alert("E-mail ou senha incorretos. Tente novamente.");
-            }       
-        } else{
-            alert("Nenhuma conta encontrada com este e-mail. Cadaste-se primeiro!");
+            if (usuarioSalvo.email === emailDigitado && usuarioSalvo.senha === senhaDigitada) {
+                if (usuarioSalvo.tipo === 'voluntario') {
+                    alert(`Acesso liberado. Vamos encontrar uma vaga, ${usuarioSalvo.nome}?`);
+                    window.location.href = 'oportunidades.html'; 
+                } else {
+                    alert(`Acesso Institucional liberado para: ${usuarioSalvo.nome}.`);
+                    window.location.href = 'index.html'; 
+                }
+            } else {
+                alert("❌ E-mail ou senha incorretos.");
+            }
+        } else {
+            alert("❌ Nenhuma conta encontrada. Cadastre-se primeiro!");
         }
     });
+
 });
