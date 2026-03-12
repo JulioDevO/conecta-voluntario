@@ -1,4 +1,7 @@
-/* 1. Variáveis Gerais e Reset */
+/* ==========================================================================
+   1. GERAL (Regras compartilhadas em todas as telas)
+   ========================================================================== */
+
 :root {
     --primary-color: #3e7ea4;
     --secondary-color: #F9A825;
@@ -15,6 +18,10 @@
     font-family: var(--font-main);
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-dark);
@@ -24,10 +31,17 @@ body {
 }
 
 main {
-    flex-grow: 1; 
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
-/* 2. Navbar */
+.oculto { 
+    display: none !important; 
+}
+
+/* --- Cabeçalho (Navbar) --- */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -37,13 +51,13 @@ main {
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.logo h1 {
-    font-size: 1.5rem;
-    color: var(--text-dark);
+.logo h1 { 
+    font-size: 1.5rem; 
+    color: var(--text-dark); 
 }
 
-.logo span {
-    color: var(--primary-color);
+.logo span { 
+    color: var(--primary-color); 
 }
 
 .nav-links {
@@ -59,11 +73,16 @@ main {
     transition: color 0.3s;
 }
 
-.nav-links a:hover {
-    color: var(--primary-color);
+.nav-links a:hover { 
+    color: var(--primary-color); 
 }
 
-/* 3. Rodapé */
+.nav-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* --- Rodapé (Footer) --- */
 footer {
     background-color: var(--primary-color); 
     color: var(--text-light); 
@@ -72,12 +91,12 @@ footer {
     margin-top: auto; 
 }
 
-footer p {
-    font-size: 0.9rem;
+footer p { 
+    font-size: 0.9rem; 
     opacity: 0.9; 
 }
 
-/* 4. Botões Globais */
+/* --- Botões Padrões --- */
 button {
     cursor: pointer;
     border: none;
@@ -86,28 +105,28 @@ button {
     transition: background-color 0.3s, transform 0.1s;
 }
 
-button:active {
-    transform: scale(0.98);
+button:active { 
+    transform: scale(0.98); 
 }
 
-.btn-primary, .btn-cadastro {
+.btn-primary {
     background-color: var(--primary-color);
     color: var(--text-light);
     padding: 0.8rem 1.5rem;
 }
 
-.btn-secondary, .btn-login {
+.btn-primary:hover { 
+    background-color: #2b5c7a; 
+}
+
+.btn-secondary {
     background-color: transparent;
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
     padding: 0.8rem 1.5rem;
 }
 
-.btn-primary:hover, .btn-cadastro:hover {
-    background-color: #2b5c7a; 
-}
-
-.btn-secondary:hover, .btn-login:hover {
+.btn-secondary:hover { 
     background-color: #eaf3f8; 
 }
 
@@ -119,7 +138,11 @@ button:active {
     margin-top: 1rem;
 }
 
-/* Página Inicial */
+
+/* ==========================================================================
+   2. TELA: PÁGINA INICIAL (index.html)
+   ========================================================================== */
+
 .hero {
     height: 80vh;
     display: flex;
@@ -129,32 +152,191 @@ button:active {
     padding: 0 5%;
 }
 
-.hero-content h2 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: var(--primary-color);
+.hero-content h2 { 
+    font-size: 3rem; 
+    margin-bottom: 1rem; 
+    color: var(--primary-color); 
 }
 
-.hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+.hero-content p { 
+    font-size: 1.2rem; 
+    margin-bottom: 2rem; 
+    max-width: 600px; 
+    margin: 0 auto 2rem auto; 
 }
 
-.hero-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
+.hero-actions { 
+    display: flex; 
+    gap: 1rem; 
+    justify-content: center; 
 }
 
-.hero-actions button {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
+.hero-actions a { 
+    padding: 1rem 2rem; 
+    font-size: 1.1rem; 
+    border-radius: 5px; 
+    font-weight: bold; 
 }
 
-/* 6. Login / Cadastro */
+.bg-light { 
+    background-color: #ffffff; 
+}
+
+.info-section { 
+    width: 100%; 
+    padding: 5rem 5%; 
+}
+
+.info-container { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    gap: 4rem; 
+    max-width: 1100px; 
+    margin: 0 auto; 
+}
+
+.row-reverse { 
+    flex-direction: row-reverse; 
+}
+
+.info-text { 
+    flex: 1; 
+}
+
+.info-text h3 { 
+    font-size: 2.2rem; 
+    color: var(--primary-color); 
+    margin-bottom: 1rem; 
+}
+
+.info-text p { 
+    font-size: 1.1rem; 
+    color: #555; 
+    margin-bottom: 2rem; 
+    line-height: 1.6; 
+}
+
+.info-list { 
+    list-style: none; 
+    margin-bottom: 2rem; 
+}
+
+.info-list li { 
+    font-size: 1.05rem; 
+    margin-bottom: 1rem; 
+    color: var(--text-dark); 
+}
+
+.info-image { 
+    flex: 1; 
+    min-height: 350px; 
+    border-radius: 16px; 
+    background-size: cover; 
+    background-position: center; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+}
+
+.placeholder-voluntario { 
+    background-image: url('https://images.unsplash.com/photo-1593113580232-a74e5ba09002?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); 
+}
+
+.placeholder-ong { 
+    background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); 
+}
+
+.news-section { 
+    width: 100%; 
+    padding: 5rem 5%; 
+    text-align: center; 
+    background-color: var(--bg-color); 
+}
+
+.news-section h2 { 
+    font-size: 2.5rem; 
+    color: var(--primary-color); 
+    margin-bottom: 0.5rem; 
+}
+
+.section-subtitle { 
+    color: #666; 
+    font-size: 1.1rem; 
+    margin-bottom: 3rem; 
+}
+
+.news-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 2rem; 
+    max-width: 1100px; 
+    margin: 0 auto; 
+}
+
+.news-card { 
+    background-color: #fff; 
+    padding: 2rem; 
+    border-radius: 12px; 
+    text-align: left; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+    border-top: 4px solid #ccc; 
+    transition: transform 0.3s ease; 
+}
+
+.news-card:hover { 
+    transform: translateY(-5px); 
+}
+
+.news-card.urgente { 
+    border-color: #e74c3c; 
+}
+
+.news-card.vitoria { 
+    border-color: #2ecc71; 
+}
+
+.news-card.aviso { 
+    border-color: #f39c12; 
+}
+
+.news-badge { 
+    display: inline-block; 
+    padding: 0.3rem 0.8rem; 
+    border-radius: 20px; 
+    font-size: 0.8rem; 
+    font-weight: bold; 
+    margin-bottom: 1rem; 
+    color: #fff; 
+}
+
+.urgente .news-badge { 
+    background-color: #e74c3c; 
+}
+
+.vitoria .news-badge { 
+    background-color: #2ecc71; 
+}
+
+.aviso .news-badge { 
+    background-color: #f39c12; 
+}
+
+.news-card h4 { 
+    font-size: 1.2rem; 
+    margin-bottom: 0.8rem; 
+    color: var(--text-dark); 
+}
+
+.news-card p { 
+    color: #555; 
+    font-size: 0.95rem; 
+    line-height: 1.5; 
+}
+
+
+/* ==========================================================================
+   3. TELA: ACESSO E CADASTRO (cadastro.html)
+   ========================================================================== */
+
 .auth-page {
     flex-grow: 1;
     display: flex;
@@ -187,80 +369,146 @@ button:active {
     color: var(--text-light);
 }
 
-.banner-overlay {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%);
+.banner-overlay { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%); 
 }
 
-.banner-content {
-    position: relative;
-    z-index: 1;
+.banner-content { 
+    position: relative; 
+    z-index: 1; 
 }
 
-.banner-content h2 { font-size: 2.2rem; margin-bottom: 0.5rem; }
-.banner-content p { font-size: 1.1rem; opacity: 0.9; }
-
-.auth-form-area {
-    flex: 1;
-    padding: 3rem 3.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.banner-content h2 { 
+    font-size: 2.2rem; 
+    margin-bottom: 0.5rem; 
 }
 
-.form-box h2 { font-size: 1.8rem; margin-bottom: 0.2rem; }
-.form-box .subtitle { color: #666; margin-bottom: 2rem; font-size: 0.95rem; }
-
-.input-group {
-    margin-bottom: 1.2rem;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
+.banner-content p { 
+    font-size: 1.1rem; 
+    opacity: 0.9; 
 }
 
-.input-group label {
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-    color: var(--text-dark);
-    font-size: 0.95rem;
+.auth-form-area { 
+    flex: 1; 
+    padding: 3rem 3.5rem; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+}
+
+.form-box { 
+    animation: fadeIn 0.4s ease-in-out; 
+}
+
+.form-box h2 { 
+    font-size: 1.8rem; 
+    margin-bottom: 0.2rem; 
+}
+
+.form-box .subtitle { 
+    color: #666; 
+    margin-bottom: 2rem; 
+    font-size: 0.95rem; 
+}
+
+.input-group { 
+    margin-bottom: 1.2rem; 
+    display: flex; 
+    flex-direction: column; 
+    text-align: left; 
+}
+
+.input-group label { 
+    font-weight: 600; 
+    margin-bottom: 0.4rem; 
+    color: var(--text-dark); 
+    font-size: 0.95rem; 
 }
 
 .input-group input, 
-.input-group select {
-    width: 100%;
-    padding: 0.8rem 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-family: var(--font-main);
-    outline: none;
-    background-color: #fafafa;
-    transition: all 0.3s ease;
+.input-group select { 
+    width: 100%; 
+    padding: 0.8rem 1rem; 
+    border: 1px solid #d1d5db; 
+    border-radius: 8px; 
+    font-size: 1rem; 
+    font-family: var(--font-main); 
+    outline: none; 
+    background-color: #fafafa; 
+    transition: all 0.3s ease; 
 }
 
 .input-group input:focus, 
-.input-group select:focus {
-    border-color: var(--primary-color);
-    background-color: #ffffff;
+.input-group select:focus { 
+    border-color: var(--primary-color); 
+    background-color: #ffffff; 
     box-shadow: 0 0 0 4px rgba(62, 126, 164, 0.15); 
 }
 
-.oculto { display: none !important; }
-.form-box { animation: fadeIn 0.4s ease-in-out; }
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateX(10px); }
-    to { opacity: 1; transform: translateX(0); }
+.auth-link { 
+    text-align: center; 
+    margin-top: 1.5rem; 
+    font-size: 0.9rem; 
+    color: #666; 
 }
 
-.auth-link { text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: #666; }
-.auth-link a { color: var(--primary-color); font-weight: bold; text-decoration: none; }
-.auth-link a:hover { text-decoration: underline; }
+.auth-link a { 
+    color: var(--primary-color); 
+    font-weight: bold; 
+    text-decoration: none; 
+}
 
-/* 7. Responsividade */
+.auth-link a:hover { 
+    text-decoration: underline; 
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateX(10px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0); 
+    }
+}
+
+/* ==========================================================================
+   4. RESPONSIVIDADE GERAL (Mobile)
+   ========================================================================== */
+
 @media (max-width: 768px) {
-    .auth-banner { display: none; }
-    .auth-form-area { padding: 2.5rem 1.5rem; }
-    .hero-content h2 { font-size: 2.2rem; }
+    /* Home */
+    .info-container, 
+    .row-reverse { 
+        flex-direction: column; 
+    }
+    
+    .info-image { 
+        width: 100%; 
+        min-height: 250px; 
+    }
+    
+    .hero-content h2 { 
+        font-size: 2.2rem; 
+    }
+    
+    /* Cadastro */
+    .auth-banner { 
+        display: none; 
+    }
+    
+    .auth-form-area { 
+        padding: 2.5rem 1.5rem; 
+    }
+    
+    /* Navbar */
+    .nav-links { 
+        display: none; 
+    }
 }
