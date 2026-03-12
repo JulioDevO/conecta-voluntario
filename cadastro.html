@@ -6,8 +6,7 @@
     <title>Acesso | Conecta Voluntário</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style/style.css">
-</head>
+    <link rel="stylesheet" href="style/style.css"> </head>
 <body>
 
     <header class="navbar">
@@ -50,43 +49,67 @@
                         <button type="submit" class="btn-primary btn-block">Entrar</button>
                     </form>
                     
-                    <p class="auth-link">Ainda não tem conta? <a href="#" id="linkIrParaCadastro">Cadastre-se</a></p>
+                    <p class="auth-link">Ainda não tem conta? <a href="#" id="linkIrParaCadastro">Cadastre-se como Voluntário</a></p>
+                    <p class="auth-link">Representa uma instituição? <a href="#" id="linkIrParaCadastroOng">Cadastre sua ONG</a></p>
                 </div>
 
-                <div id="boxCadastro" class="form-box oculto">
+                <div id="boxCadastroVoluntario" class="form-box oculto">
                     <h2>Crie sua Conta</h2>
-                    <p class="subtitle">Faça parte da nossa rede de voluntariado.</p>
+                    <p class="subtitle">Faça parte da nossa rede de voluntários.</p>
 
-                    <form id="formCadastroData">
+                    <form id="formCadastroVoluntario">
                         <div class="input-group">
-                            <label for="nomeCadastro">Nome Completo</label>
-                            <input type="text" id="nomeCadastro" placeholder="Digite seu nome" required>
+                            <label for="nomeVoluntario">Nome Completo</label>
+                            <input type="text" id="nomeVoluntario" placeholder="Digite seu nome" required>
                         </div>
                         <div class="input-group">
-                            <label for="emailCadastro">E-mail</label>
-                            <input type="email" id="emailCadastro" placeholder="exemplo@email.com" required>
+                            <label for="cpfVoluntario">CPF</label>
+                            <input type="text" id="cpfVoluntario" placeholder="000.000.000-00" required>
                         </div>
                         <div class="input-group">
-                            <label for="senhaCadastro">Senha</label>
-                            <input type="password" id="senhaCadastro" placeholder="Crie uma senha forte" required>
+                            <label for="emailVoluntario">E-mail</label>
+                            <input type="email" id="emailVoluntario" placeholder="exemplo@email.com" required>
                         </div>
                         <div class="input-group">
-                            <label for="tipoUsuario">Eu sou um(a):</label>
-                            <select id="tipoUsuario" required>
-                                <option value="" disabled selected>Selecione</option>
-                                <option value="voluntario">Voluntário</option>
-                                <option value="ong">Organização (ONG)</option>
-                            </select>
+                            <label for="senhaVoluntario">Senha</label>
+                            <input type="password" id="senhaVoluntario" placeholder="Crie uma senha forte" required>
                         </div>
-                        <button type="submit" class="btn-primary btn-block">Cadastrar</button>
+                        <button type="submit" class="btn-primary btn-block">Cadastrar Voluntário</button>
                     </form>
 
+                    <p class="auth-link">É uma instituição? <a href="#" id="linkIrParaCadastroOng2">Cadastre sua ONG aqui</a></p>
                     <p class="auth-link">Já possui uma conta? <a href="#" id="linkIrParaLogin">Faça Login</a></p>
                 </div>
 
-            </div>
-        </div>
-    </main>
+                <div id="boxCadastroOng" class="form-box oculto">
+                    <h2>Cadastro de Instituição</h2>
+                    <p class="subtitle">Encontre voluntários para sua causa.</p>
+
+                    <form id="formCadastroOng">
+                        <div class="input-group">
+                            <label for="nomeOng">Nome da Instituição (Razão Social)</label>
+                            <input type="text" id="nomeOng" placeholder="Ex: Instituto Verde" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="cnpjOng">CNPJ</label>
+                            <input type="text" id="cnpjOng" placeholder="00.000.000/0000-00" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="emailOng">E-mail Corporativo</label>
+                            <input type="email" id="emailOng" placeholder="contato@ong.com.br" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="senhaOng">Senha</label>
+                            <input type="password" id="senhaOng" placeholder="Crie uma senha forte" required>
+                        </div>
+                        <button type="submit" class="btn-secondary btn-block">Cadastrar ONG</button>
+                    </form>
+
+                    <p class="auth-link">É um voluntário? <a href="#" id="linkIrParaCadastro2">Cadastre-se aqui</a></p>
+                    <p class="auth-link">Já possui uma conta? <a href="#" id="linkIrParaLogin2">Faça Login</a></p>
+                </div>
+
+            </div> </div> </main>
 
     <footer>
         <p>&copy; 2026 Conecta Voluntário. Todos os direitos reservados.</p>
