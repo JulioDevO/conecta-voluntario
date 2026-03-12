@@ -3,40 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conecta Voluntário | Transforme sua Comunidade</title>
-    <link rel="stylesheet" href="/style/style.css">
+    <title>Conecta Voluntário | Início</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    
+
     <header class="navbar">
         <div class="logo">
             <h1>Conecta<span>Voluntário</span></h1>
         </div>
         <nav>
             <ul class="nav-links">
-                <li><a href="#sobre">Sobre o Projeto</a></li>
+                <li><a href="#como-funciona">Sobre o Projeto</a></li>
                 <li><a href="oportunidades.html">Oportunidades</a></li>
-                <li><a href="#ong">Para ONGs</a></li>
+                <li><a href="#para-ongs">Para ONGs</a></li>
             </ul>
         </nav>
-        <div>
-            <button class="btn-login" onclick="window.location='cadastro.html?tela=login';">Entrar</button>
-            <button class="btn-cadastro" onclick="window.location='cadastro.html?tela=cadastro';">Cadastre-se</button>
+        <div class="nav-actions">
+            <button class="btn-secondary" onclick="window.location.href='cadastro.html?tela=login';">Entrar</button>
+            <button class="btn-primary" onclick="window.location.href='cadastro.html?tela=cadastro';">Cadastre-se</button>
         </div>
     </header>
 
     <main>
-        <section class="hero" id="home">
+        <section class="hero">
             <div class="hero-content">
                 <h2>Conectando propósitos, transformando realidades.</h2>
                 <p>Encontre oportunidades de voluntariado que combinam com suas habilidades e horários, ou encontre os voluntários ideais para a sua causa social.</p>
                 <div class="hero-actions">
-                    <button class="btn-primary">Quero ser Voluntário</button>
-                    <button class="btn-secondary">Sou uma Organização</button>
+                    <a href="#como-funciona" class="btn-primary" style="text-decoration: none; display: inline-block;">Quero ser Voluntário</a>
+                    <a href="#para-ongs" class="btn-secondary" style="text-decoration: none; display: inline-block;">Sou uma Organização</a>
                 </div>
             </div>
         </section>
-        
+
+        <section id="como-funciona" class="info-section bg-light">
+            <div class="info-container">
+                <div class="info-text">
+                    <h3>Para quem quer fazer a diferença</h3>
+                    <p>Ser voluntário nunca foi tão simples. Nossa plataforma cruza o seu perfil com as necessidades urgentes da comunidade.</p>
+                    <ul class="info-list">
+                        <li>✅ <strong>Encontre o seu propósito:</strong> Filtre vagas por Educação, Saúde, Meio Ambiente e muito mais.</li>
+                        <li>✅ <strong>Flexibilidade:</strong> Escolha ações pontuais de fim de semana ou engajamentos contínuos.</li>
+                        <li>✅ <strong>Impacto Real:</strong> Veja o resultado do seu trabalho diretamente na sua cidade.</li>
+                    </ul>
+                    <button class="btn-primary" onclick="window.location.href='cadastro.html?tela=cadastro';">Criar Conta de Voluntário</button>
+                </div>
+                <div class="info-image placeholder-voluntario"></div>
+            </div>
+        </section>
+
+        <section id="para-ongs" class="info-section">
+            <div class="info-container row-reverse">
+                <div class="info-text">
+                    <h3>Fortaleça sua Instituição</h3>
+                    <p>Deixe a tecnologia conectar as mãos que ajudam ao seu projeto. Amplie seu alcance e foque no que realmente importa.</p>
+                    <ul class="info-list">
+                        <li>🎯 <strong>Visibilidade:</strong> Divulgue suas necessidades para uma rede de pessoas engajadas.</li>
+                        <li>🚀 <strong>Gestão Simples:</strong> Publique vagas e gerencie candidaturas de forma rápida.</li>
+                        <li>🤝 <strong>Conexões Certas:</strong> Encontre perfis com as habilidades exatas que sua ONG precisa.</li>
+                    </ul>
+                    <button class="btn-secondary" onclick="window.location.href='cadastro.html?tela=cadastro';">Cadastrar Instituição</button>
+                </div>
+                <div class="info-image placeholder-ong"></div>
+            </div>
+        </section>
+
+        <section class="news-section bg-light">
+            <h2>Acontecendo Agora</h2>
+            <p class="section-subtitle">O pulso da nossa comunidade de voluntariado.</p>
+            
+            <div class="news-grid">
+                <div class="news-card urgente">
+                    <span class="news-badge">Urgente</span>
+                    <h4>Arrecadação de Agasalhos</h4>
+                    <p>O Abrigo São Francisco precisa de doações de cobertores e casacos até esta sexta-feira devido à frente fria.</p>
+                </div>
+                
+                <div class="news-card vitoria">
+                    <span class="news-badge">Vitória</span>
+                    <h4>Ação Praia Limpa</h4>
+                    <p>A ação do último domingo recolheu 2 toneladas de lixo. Muito obrigado aos 50 voluntários que participaram!</p>
+                </div>
+                
+                <div class="news-card aviso">
+                    <span class="news-badge">Aviso</span>
+                    <h4>Novas Vagas de Mentoria</h4>
+                    <p>A ONG "Code for All" acabou de abrir 10 novas oportunidades para mentores de programação básica.</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
