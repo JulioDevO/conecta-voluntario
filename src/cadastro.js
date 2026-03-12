@@ -32,21 +32,49 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 5. Envio do Form de Login
-    formLogin.addEventListener('submit', (evento) => {
+    formCadastroData.addEventListener('submit', (evento) =>{
         evento.preventDefault();
-        const email = document.getElementById('emailLogin').value;
-        alert(`Login simulado com sucesso para: ${email}`);
-        window.location.href = 'index.html'; 
-    });
+
+        const nome = document.getElementById('nomeCadastro').value;
+        const email = document.getElementById('emailCadastro').value;
+        const senha = document.getElementById('senhaCadastro').value;
+        const tipo = document.getElementById('tipoUsuario').value;
+
+        const novoUsuario = {
+            nome: nome,
+            email: email,
+            senha: senha,
+            tipo: tipo
+        };
+
+        localStorage.setItem('usuarioConecta', JSON.stringify(novoUsuario));
+
+        alert(`Cadastro realizado com sucesso! Bem-Vindo(a), ${nome}`);
+
+        window.location.href = 'cadastro.html?tela=login';
+    })
 
     // 6. Envio do Form de Cadastro
-    formCadastroData.addEventListener('submit', (evento) => {
+    formLogin.addEventListener('submit', (evento) =>{
         evento.preventDefault();
-        const nome = document.getElementById('nomeCadastro').value;
-        const tipo = document.getElementById('tipoUsuario').value;
-        
-        alert(`Cadastro simulado! Bem-vindo(a) ${nome} (${tipo})`);
-        window.location.href = 'cadastro.html?tela=login'; 
-    });
 
+        const emailDigitado = document.getElementById('emailLogin').value;
+        const senhaDigitado = document.getElementById('senhaLogin').value;
+
+        const usuarioSalvoString = localStorage.getItem('usuarioConecta');
+
+        if(usuarioSalvoString){
+            const usuarioSalvo = JSON.parse(usuarioSalvoString);
+            
+            if(usuarioSalvo.email === emailDigitado && usuarioSalvo.senha === senhaDigitado){
+                alert(`Login aprovado! Olá novamente, ${usuarioSalvo.nome}.`);
+
+                window.location.href = 'index.html';
+            } else{
+                alert("E-mail ou senha incorretos. Tente novamente.");
+            }       
+        } else{
+            alert("Nenhuma conta encontrada com este e-mail. Cadaste-se primeiro!");
+        }
+    });
 });
